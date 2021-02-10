@@ -77,3 +77,43 @@ crawler.iconbitmap('img/logo.ico')
 # Korniza(Frame) Kryesore
 top_frame = Label(crawler, text='WEB CRAWLER',font = ('Cosmic', 25, 'bold'), bg='cyan', fg='black', relief='groove',padx=500, pady=30, bd='5')
 top_frame.pack(side='top')
+
+''' Startimi i fotos ne prapavije(background)'''
+# Kalibrimi i madhesise se fotos
+canvas = Canvas(crawler, width=500, height=500)
+
+# Hapja e fotos
+image = ImageTk.PhotoImage(Image.open('img/bg6.jpg'))
+
+# Pozicionimi i fotos
+canvas.create_image(0,0, anchor=NW, image=image)
+canvas.pack()
+'''Perfundimi i fotos ne prapavije(background)'''
+
+# Krijimi i Kornizes(Frame)
+frame = LabelFrame(crawler, padx=30, pady=40, bg='white', bd='5', relief='groove')
+frame.place(relx = 0.5, rely = 0.5, anchor = CENTER)
+
+# Etiketa(Label)
+url_add = tk.Label(frame, text = 'Shenoni nje URL ose Web Address',font=('Arial',10, 'bold'),bg='white', fg='green').pack()
+
+# Hyrja ose Inputi
+url_entry = tk.Entry(frame, font=('calibre',10,'normal'), justify = 'center', bg='lightgray', width='30')
+
+# Kthimi i nje vlere tek funksioni
+url_entry.bind('<Return>', Scrape)
+
+# Fokuso tek inputi
+url_entry.focus_set()
+
+# Vendosja e butonit
+url_entry.pack()
+
+# Etiketa(Label) per ndarjen e butonave
+label = Label(frame, bg='white').pack()
+
+# Krijimi i butonit Submit dhe pozicionimi i tij
+crawl = tk.Button(frame, text = "Kerko", width="10", bd = '3', command = Scrape, font = ('Times', 12, 'bold'), bg='#7268A6',relief='groove', justify = 'center', pady='5').pack()
+
+# Krijimi i dritares(window) vetem nje here
+crawler.mainloop()
