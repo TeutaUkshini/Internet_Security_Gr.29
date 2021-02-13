@@ -5,6 +5,34 @@ from PIL import ImageTk, Image
 from bs4 import BeautifulSoup
 import urllib
 
+
+def showHelp(arg=None):
+        root = tk.Toplevel()
+        info = open('help.txt' , 'r').read()
+
+        # Krijimi i titullit
+        root.title('Help Guide')
+
+        # Krijimi i ikones(logo)
+        root.iconbitmap('img/logo.ico')
+
+        # Bllokimi i zgjerimit te madhesise se dritares(Window)
+        root.resizable(width=False, height=False)
+        
+        ''' Perfundimi i dritares(Window)'''
+        
+        # Shtimi i scrollbar ne dritare(window)
+        scrollbar = Scrollbar(root)
+        scrollbar.pack(side=RIGHT, fill=Y)
+
+        # Perdorimi i widget text per te shfaqur permbajtjen scraped
+        text = Text(root, yscrollcommand=scrollbar.set, wrap = WORD)
+        text.insert(INSERT, info)
+        text.pack()
+
+        # Scroll bar
+        scrollbar.config(command=text.yview)
+        
 def Scrape(arg=None):
     
     # Kontrollimi i url-se nese eshte e zbrazet
@@ -69,6 +97,22 @@ crawler.resizable(width=False, height=False)
 
 # Krijimi i titullit
 crawler.title('URL and structure crawling ')
+
+# Menu
+crawler_menu = Menu(crawler)
+crawler.config(menu=crawler_menu)
+
+# mundesia per te zgjedhur ne menu-n
+choose_menu = Menu(crawler_menu)
+help_menu = Menu(crawler_menu)
+
+# objektet ne menu
+crawler_menu.add_cascade(label="File" , menu=choose_menu)
+choose_menu.add_command(label="URLs" , command=Scrape)
+choose_menu.add_command(label="Exit" , command=crawler.destroy)
+
+crawler_menu.add_cascade(label="Help" , menu=help_menu)
+help_menu.add_command(label="Show" , command=showHelp)
 
 # Krijimi i ikones(logo)
 crawler.iconbitmap('img/logo.ico')
