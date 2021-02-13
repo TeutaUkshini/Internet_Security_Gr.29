@@ -11,3 +11,11 @@ eshte e pashmangshme.
 
 Detyra 7
 Zhvillimi i aplikacionit qe mundeson URL and structure crawling dhe paraqitja e te njejtave.
+
+
+
+
+
+
+Per te pare testimet dhe me shume rreth projektit, ju lutem shkoni tek README.docx.
+Ju Falemnderit!
